@@ -4,28 +4,41 @@
         <h1>My CMS Admin Page</h1>
         <p class="lead">This is Admin Page You can Edit, Delete as well as Add Web Pages .</p>
       </div>
+ 
+
+      	 
+      		
 	<?php if (empty($pages)) : ?>
 		<p>No pages at the mements.</p>
 	<?php else: ?>
-		<div class="row">
-	        <div class="col-md-2">Label</div>
-	        <div class="col-md-3">Title</div>
-	        <div class="col-md-2">Slug</div>
-	        <div class="col-md-2"></div>
-	        <div class="col-md-2"></div>
-      	</div>
+		<table class="table table-striped"> 
+      	<thead> 
+      		<tr> 
+      			
+      			<th>Label</th> 
+      			<th>Title</th> 
+      			<th>Slug</th> 
+      			<th></th> 
+      			<th></th> 
+      		</tr> 
+      	</thead> 
+      	<tbody>
       	<?php foreach ($pages as $page ) :?>
-      		<div class="row">
-	        <div class="col-md-2"><?php echo $page['label']; ?></div>
-	        <div class="col-md-3"><?php echo $page['title']; ?></div>
-	        <div class="col-md-2"><?php echo $page['slug']; ?></div>
-	        <div class="col-md-2"><a href="">Edit</a></div>
-	        <div class="col-md-2"><a href="">Delete</a></div>
+      		<tr> 
+      			
+      				 <td><?php echo $page['label']; ?></td> 
+      				 <td><?php echo $page['title']; ?></td> 
+      				 <td><?php echo $page['slug']; ?></td> 
+      				 <td><a href="<?php echo BASE_URL; ?>admin/edit.php?id=<?php echo $page['id']; ?>">Edit</a></td> 
+      				 <td><a href="<?php echo BASE_URL; ?>admin/delete.php?id=<?php echo $page['id']; ?>">Delete</a></td> 
+      			</tr> 
 
-      	</div>
-
+      	
       	<?php endforeach; ?>
 	<?php endif; ?>
+
+      	</tbody> 
+      </table>
 	<a href="<?php echo BASE_URL; ?>admin/add.php" class="btn btn-default">Add New Page</a>
 
 <?php require VIEW_ROOT.'templates/footer.php'; ?>

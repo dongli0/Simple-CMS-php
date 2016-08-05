@@ -9,8 +9,7 @@ if (!empty($_POST)) {
 	$body = $_POST['body'];
 
 	$inserPage = $db->prepare("
-		INSERT INTO pages (label,titlemslug,body,created)
-		VALUES (:label,:title,:slug,:body,NOW())
+		INSERT INTO pages (label,title,slug,body,created) VALUES (:label,:title,:slug,:body,NOW())
 
 		");
 	$inserPage->execute([
@@ -19,7 +18,7 @@ if (!empty($_POST)) {
 		'slug'=>$slug,
 		'body'=>$body,
 		]);
-	header('Location:'.BASE_URL.'admin/list.php');
+	header('Location:'.BASE_URL.'admin/list.php?meg=New Page Added');
 }
 
 require VIEW_ROOT.'admin/add.php';
